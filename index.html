@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Built Construction — Your Green Comfort Solution</title>
+  <meta name="description" content="Geothermal and traditional HVAC serving the Intermountain West. Green Built Construction installs, designs, and drills geothermal systems that cut energy bills by up to 70%.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============================================================
+       Homepage-specific styles
+       ============================================================ */
+
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-carousel {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .hero-slide.active { opacity: 0.55; }
+
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: radial-gradient(
+        ellipse 55% 65% at 50% 50%,
+        rgba(248, 250, 246, 1) 0%,
+        rgba(248, 250, 246, 0.7) 35%,
+        rgba(248, 250, 246, 0) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-logo {
+      height: clamp(120px, 16vw, 180px);
+      width: auto;
+      margin-bottom: 20px;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-head);
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.04em;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ---- The Problem ---- */
+    .section-problem {
+      background: var(--bg);
+      text-align: center;
+    }
+
+    .section-problem .label {
+      margin-bottom: 16px;
+    }
+
+    .section-problem h2 {
+      max-width: 640px;
+      margin: 0 auto 24px;
+    }
+
+    .section-problem p {
+      max-width: 620px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.75;
+    }
+
+    /* ---- Stats ---- */
+    .section-stats {
+      background: var(--white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .stat-item {
+      padding: 48px 32px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ---- Contractor Callout ---- */
+    .section-contractor {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .section-contractor h2 {
+      color: var(--white);
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+
+    .section-contractor p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    /* ---- Service Cards ---- */
+    .section-services {
+      background: var(--bg);
+    }
+
+    .section-services .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-services .section-header h2 {
+      margin-bottom: 12px;
+    }
+
+    .section-services .section-header p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+
+    .service-row:last-child { margin-bottom: 0; }
+
+    .service-row.reverse .service-text { order: 2; }
+    .service-row.reverse .service-image { order: 1; }
+
+    .service-image img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+
+    .service-text h3 {
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+
+    .service-text p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    /* ---- Final CTA ---- */
+    .section-cta {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .section-cta h2 { margin-bottom: 16px; }
+
+    .section-cta p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 440px;
+      margin: 0 auto 36px;
+    }
+
+    /* ---- Mobile ---- */
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .stat-item:last-child { border-bottom: none; }
+
+      .service-row,
+      .service-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .service-row .service-image,
+      .service-row.reverse .service-image { order: 1; }
+      .service-row .service-text,
+      .service-row.reverse .service-text { order: 2; }
+
+      .service-image img { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Green Built Construction home">
+        <img src="assets/images/logo-horizontal.png" alt="Green Built Construction">
+      </a>
+      <ul class="nav-links">
+        <li><a href="/geothermal">Geothermal</a></li>
+        <li><a href="/traditional">Traditional HVAC</a></li>
+        <li><a href="/drilling">Drilling</a></li>
+        <li><a href="/design-services">Design Services</a></li>
+        <li><a href="/contractors">Contractors</a></li>
+      </ul>
+      <div class="nav-ctas">
+        <a href="/start" class="btn btn-green">Start a Project</a>
+        <a href="/contractors" class="btn btn-blue-outline">Work With Us</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="nav-mobile" aria-hidden="true">
+    <a href="/geothermal">Geothermal</a>
+    <a href="/traditional">Traditional HVAC</a>
+    <a href="/drilling">Drilling</a>
+    <a href="/design-services">Design Services</a>
+    <a href="/contractors">Contractors</a>
+    <a href="/start" class="btn btn-green">Start a Project</a>
+    <a href="/contractors" class="btn btn-blue-outline">Work With Us</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-carousel" aria-hidden="true">
+      <div class="hero-slide active" style="background-image: url('assets/images/hero-01.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-02.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-03.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-04.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-05.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-06.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-07.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('assets/images/hero-08.jpg')"></div>
+    </div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-content">
+      <img src="assets/images/logo-stacked.png" alt="Green Built Construction" class="hero-logo">
+      <p class="hero-tagline">Your Green Comfort Solution</p>
+      <div class="hero-ctas">
+        <a href="/start" class="btn btn-green">Get a Quote</a>
+        <a href="/contractors" class="btn btn-blue-outline">Work With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section section-problem">
+    <div class="container">
+      <span class="label">The Smarter Choice</span>
+      <h2>Traditional HVAC is cheap to install.<br>Expensive to own.</h2>
+      <p>Traditional systems cost less upfront but run on electricity or gas at full price forever. Geothermal flips the equation — higher install cost, dramatically lower operating costs, and a system that lasts 25+ years. The math favors geothermal.</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">2–3×</div>
+          <div class="stat-label">more energy efficient<br>than traditional systems</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$370–$500+</div>
+          <div class="stat-label">average annual energy savings<br>for homeowners</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">30%</div>
+          <div class="stat-label">federal tax credit<br>on qualifying installations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTRACTOR CALLOUT -->
+  <section class="section section-contractor">
+    <div class="container">
+      <h2>We work with HVAC contractors across the Intermountain West.</h2>
+      <p>Referral partnerships and subcontract opportunities available.</p>
+      <a href="/contractors" class="btn btn-white-outline">See Contractor Opportunities</a>
+    </div>
+  </section>
+
+  <!-- SERVICE CARDS -->
+  <section class="section section-services">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">What We Do</span>
+        <h2>Explore Our Services</h2>
+        <p>From geothermal ground loops to traditional installs — we design, drill, and build it all.</p>
+      </div>
+
+      <div class="service-row">
+        <div class="service-text">
+          <h3>Geothermal HVAC</h3>
+          <p>The earth beneath your home stays a constant 50–55°F year-round. Geothermal systems tap into that free energy to heat and cool your home at 2–3× the efficiency of traditional HVAC — with no combustion, no gas bill, and a lifespan that outlasts every other system on the market.</p>
+          <a href="/geothermal" class="btn btn-green">Learn More</a>
+        </div>
+        <div class="service-image">
+          <img src="assets/images/hero-05.jpg" alt="Geothermal HVAC installation">
+        </div>
+      </div>
+
+      <div class="service-row reverse">
+        <div class="service-text">
+          <h3>Traditional HVAC</h3>
+          <p>Sometimes geothermal isn't the right fit — and that's okay. We install and service high-efficiency traditional HVAC systems too. We'll give you an honest comparison and recommend what actually makes sense for your home, budget, and timeline.</p>
+          <a href="/traditional" class="btn btn-green">Learn More</a>
+        </div>
+        <div class="service-image">
+          <img src="assets/images/hero-01.jpg" alt="Traditional HVAC installation">
+        </div>
+      </div>
+
+      <div class="service-row">
+        <div class="service-text">
+          <h3>Drilling</h3>
+          <p>Most geothermal companies sub out their drilling. We don't. Our in-house drilling crew handles every borehole and ground loop installation — which means better coordination, tighter quality control, and lower cost passed on to you.</p>
+          <a href="/drilling" class="btn btn-green">Learn More</a>
+        </div>
+        <div class="service-image">
+          <img src="assets/images/hero-03.jpg" alt="Geothermal drilling operation">
+        </div>
+      </div>
+
+      <div class="service-row reverse">
+        <div class="service-text">
+          <h3>Design Services</h3>
+          <p>The right system starts with the right design. We perform full Manual J load calculations, system sizing, and site assessments before any equipment is specified — ensuring your system performs exactly as designed for decades.</p>
+          <a href="/design-services" class="btn btn-green">Learn More</a>
+        </div>
+        <div class="service-image">
+          <img src="assets/images/hero-07.jpg" alt="HVAC system design and planning">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section section-cta">
+    <div class="container">
+      <h2>Ready to get started?</h2>
+      <p>Tell us about your project. We'll review it and reach out within 1 business day.</p>
+      <a href="/start" class="btn btn-green">Start a Project</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <img src="assets/images/logo-horizontal.png" alt="Green Built Construction">
+          </div>
+          <p class="footer-tagline">Your Green Comfort Solution</p>
+          <p class="footer-area">Serving Utah, Idaho, Nevada, Colorado, and Wyoming.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/geothermal">Geothermal HVAC</a></li>
+            <li><a href="/traditional">Traditional HVAC</a></li>
+            <li><a href="/drilling">Drilling</a></li>
+            <li><a href="/design-services">Design Services</a></li>
+            <li><a href="/contractors">Work With Us</a></li>
+            <li><a href="/start">Start a Project</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <address>
+            Phone: (000) 000-0000<br>
+            Email: info@greenbuilt.com<br>
+            <br>
+            Intermountain West<br>
+            UT · ID · NV · CO · WY
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Green Built Construction. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script src="carousel.js"></script>
+</body>
+</html>
