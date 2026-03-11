@@ -79,6 +79,13 @@
       margin-bottom: 36px;
     }
 
+    /* Override heading reset — tagline is styled as h1 for SEO but looks like tagline */
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem) !important;
+      font-weight: 500 !important;
+      line-height: 1.4 !important;
+    }
+
     .hero-ctas {
       display: flex;
       gap: 16px;
@@ -282,7 +289,7 @@
   </nav>
 
   <!-- Mobile nav overlay -->
-  <div class="nav-mobile" aria-hidden="true">
+  <nav class="nav-mobile" aria-label="Mobile navigation" aria-hidden="true">
     <a href="/geothermal">Geothermal</a>
     <a href="/traditional">Traditional HVAC</a>
     <a href="/drilling">Drilling</a>
@@ -290,7 +297,7 @@
     <a href="/contractors">Contractors</a>
     <a href="/start" class="btn btn-green">Start a Project</a>
     <a href="/contractors" class="btn btn-blue-outline">Work With Us</a>
-  </div>
+  </nav>
 
   <!-- HERO -->
   <section class="hero" aria-label="Hero">
@@ -307,7 +314,7 @@
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="hero-content">
       <img src="assets/images/logo-stacked.png" alt="Green Built Construction" class="hero-logo">
-      <p class="hero-tagline">Your Green Comfort Solution</p>
+      <h1 class="hero-tagline">Your Green Comfort Solution</h1>
       <div class="hero-ctas">
         <a href="/start" class="btn btn-green">Get a Quote</a>
         <a href="/contractors" class="btn btn-blue-outline">Work With Us</a>
@@ -421,7 +428,7 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
+        <div class="footer-col">
           <div class="footer-logo">
             <img src="assets/images/logo-horizontal.png" alt="Green Built Construction">
           </div>

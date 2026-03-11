@@ -6,8 +6,8 @@
 
   toggle.addEventListener('click', function () {
     const isOpen = mobileNav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
-    mobileNav.setAttribute('aria-hidden', !isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
@@ -15,8 +15,8 @@
   mobileNav.querySelectorAll('a').forEach(function (link) {
     link.addEventListener('click', function () {
       mobileNav.classList.remove('open');
-      toggle.setAttribute('aria-expanded', false);
-      mobileNav.setAttribute('aria-hidden', true);
+      toggle.setAttribute('aria-expanded', 'false');
+      mobileNav.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     });
   });

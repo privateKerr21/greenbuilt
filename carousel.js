@@ -4,8 +4,7 @@
   if (!slides.length) return;
 
   var current = 0;
-  var interval = 5000;   // ms between slides
-  var duration = 800;    // matches CSS transition
+  var interval = 5000;   // ms between slides (CSS crossfade: 0.8s)
 
   function advance() {
     slides[current].classList.remove('active');
