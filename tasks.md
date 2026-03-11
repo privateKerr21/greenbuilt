@@ -11,9 +11,9 @@ _Last updated: 2026-03-11_
 
 ### Phase 1 — Foundation
 - [ ] Create folder structure (`geothermal/`, `traditional/`, `drilling/`, `design-services/`, `contractors/`, `contractors/preferences/`, `start/`)
-- [ ] Create shared `styles.css` (design system: colors, typography, components)
-- [ ] Create shared `nav.js` (mobile menu toggle)
-- [ ] Build `index.html` — Homepage (hero, problem, services, why geothermal, contractor callout, CTA)
+- [x] Create shared `styles.css` (design system: colors, typography, components)
+- [x] Create shared `nav.js` (mobile menu toggle)
+- [x] Build `index.html` — Homepage (hero, problem, services, why geothermal, contractor callout, CTA)
 - [ ] Build `start/index.html` — Project intake form (Formspree)
 
 ### Phase 2 — Service Pages
@@ -45,3 +45,5 @@ _Last updated: 2026-03-11_
 ## Completed
 - [x] Project scaffolded — 2026-03-11
 - [x] Design spec approved — 2026-03-10
+- [x] Homepage built (styles.css, nav.js, index.html, carousel.js) — 2026-03-11
+- [x] Repo initialized at github.com/privateKerr21/greenbuilt — 2026-03-11
